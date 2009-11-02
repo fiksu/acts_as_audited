@@ -156,7 +156,7 @@ module CollectiveIdea #:nodoc:
           attributes.except(*non_audited_columns)
         end
 
-      protected
+        protected
 
         def revision_with(attributes)
           returning self.dup do |revision|
@@ -177,7 +177,7 @@ module CollectiveIdea #:nodoc:
           end
         end
 
-      private
+        private
 
         def audited_changes
           changed_attributes.except(*non_audited_columns).inject({}) do |changes,(attr, old_value)|
@@ -235,6 +235,7 @@ module CollectiveIdea #:nodoc:
         def empty_callback #:nodoc:
         end
 
+      end #InstanceMethods
 
       module SingletonMethods
         # Returns an array of columns that are audited.  See non_audited_columns
