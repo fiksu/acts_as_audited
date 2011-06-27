@@ -22,6 +22,9 @@ end
 class AuditSweeper < ActionController::Caching::Sweeper #:nodoc:
   def before_create(audit)
     audit.user ||= current_user
+
+    # added to allow for recording of ip addresses
+    audit.ip_address ||= request.remote_ip
   end
 
   def current_user

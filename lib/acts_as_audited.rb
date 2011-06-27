@@ -71,6 +71,9 @@ module CollectiveIdea #:nodoc:
           # don't allow multiple calls
           return if self.included_modules.include?(CollectiveIdea::Acts::Audited::InstanceMethods)
 
+          # don't audit in test environment
+          return if ENV['RAILS_ENV'] == 'test'
+
           options = {:protect => accessible_attributes.nil?}.merge(options)
 
           class_inheritable_reader :non_audited_columns
